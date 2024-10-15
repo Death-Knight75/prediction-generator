@@ -19,3 +19,4 @@ module "predition_generator_lambda" {
       API_TOKEN = "test_value"
     }  
 }
+
