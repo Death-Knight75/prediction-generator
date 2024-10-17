@@ -14,14 +14,16 @@ module "predition_generator_lambda" {
     runtime = "nodejs20.x"
     handler = "index.handler"
     lambda_role_arn = module.prediction_function_execution_role.lambda_execution_role_arn
-    lambda_zip_path = "${path.module}/prediction-generator-lambda.zip"
+    lambda_zip_path = "${path.module}./prediction-generator-lambda.zip"
+    dynamodb_table_name = module.prediction_dynamodb_table.dynamodb_table_name
+
     lambda_environment_vars = {
       API_TOKEN = "test_value"
     }  
 }
 
 module "prediction_dynamodb_table" {
-    source = "./modules/dynamodb"   
+    source = "./modules/dynamodb"
     table_name = "predictions"
-    hash_key = "prediction_id"    
+    hash_key = "predictionId"
 }
